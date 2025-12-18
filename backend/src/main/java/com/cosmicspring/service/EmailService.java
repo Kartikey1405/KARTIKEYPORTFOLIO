@@ -90,9 +90,9 @@ public class EmailService {
             message.setText("Name: " + name + "\nFrom: " + visitorEmail + "\n\nMessage:\n" + messageText);
 
             mailSender.send(message);
-            System.out.println("✅ Email sent successfully via SendGrid!");
+            System.out.println(" Email sent successfully via SendGrid!");
         } catch (Exception e) {
-            System.err.println("❌ Failed to send email: " + e.getMessage());
+            System.err.println(" Failed to send email: " + e.getMessage());
             e.printStackTrace();
         }
     }
