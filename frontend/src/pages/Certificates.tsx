@@ -1063,7 +1063,7 @@ const certifications: Certificate[] = [
     title: 'Data Structures & Algorithms',
     issuer: 'CodeChef',
     date: 'Nov 2024',
-    credentialUrl: 'https://www.codechef.com/certificates/verify/6806da7',
+    credentialUrl: 'https://drive.google.com/file/d/1IYB3PJVnZPGXnw1JXxPmpdLEFdpJ4FYZ/view?usp=sharing',
     image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&h=250&fit=crop',
     icon: Code,
     color: '#5B4326' // CodeChef Brown
