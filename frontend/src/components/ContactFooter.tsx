@@ -211,9 +211,17 @@ const ContactFooter = () => {
     setIsSubmitting(true);
     setFormStatus('idle');
 
-    try {
+    // try {
+    //   // The Real Backend Call
+    //   const response = await fetch('http://localhost:8080/api/contact', {
+
+              try {
       // The Real Backend Call
-      const response = await fetch('http://localhost:8080/api/contact', {
+      const response = await fetch('https://kartikeyportfolio.onrender.com/api/contact', { 
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
