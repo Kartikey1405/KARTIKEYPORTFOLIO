@@ -68,12 +68,13 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public void sendEmail(String name, String visitorEmail, String subject, String messageText) {
+    // MATCHING THE CONTROLLER: Method name is now processContactForm
+    public void processContactForm(String name, String visitorEmail, String messageText) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
 
             // CRITICAL FOR SENDGRID:
-            // 1. FROM: Must be YOUR verified email (not the visitor's)
+            // 1. FROM: Must be YOUR verified email (fetched from Env Var)
             message.setFrom(senderEmail);
             
             // 2. REPLY-TO: The visitor's email. When you hit reply, it goes to them.
@@ -82,13 +83,16 @@ public class EmailService {
             // 3. TO: Sending it to yourself
             message.setTo(senderEmail);
             
-            message.setSubject("Portfolio Contact: " + subject);
+            // 4. SUBJECT: Since controller doesn't send one, we create a default
+            message.setSubject("New Portfolio Message from " + name);
+            
+            // 5. BODY: Combine the details
             message.setText("Name: " + name + "\nFrom: " + visitorEmail + "\n\nMessage:\n" + messageText);
 
             mailSender.send(message);
-            System.out.println(" Email sent successfully via SendGrid!");
+            System.out.println("✅ Email sent successfully via SendGrid!");
         } catch (Exception e) {
-            System.err.println(" Failed to send email: " + e.getMessage());
+            System.err.println("❌ Failed to send email: " + e.getMessage());
             e.printStackTrace();
         }
     }
