@@ -1,5 +1,6 @@
+
 // import { motion } from 'framer-motion';
-// import { Github, Linkedin, Twitter } from 'lucide-react';
+// import { Github, Linkedin, Twitter, FileText } from 'lucide-react';
 
 // const socials = [
 //   {
@@ -7,6 +8,14 @@
 //     icon: Github,
 //     url: 'https://github.com/Kartikey1405',
 //     color: 'hsl(0 0% 100%)',
+//   },
+//   // --- ADDED RESUME HERE (Right of GitHub) ---
+//   {
+//     name: 'Resume',
+//     icon: FileText,
+//     url: '/resume.pdf',
+//     color: 'hsl(150 100% 50%)', // Bright Green to stand out
+//     download: true, // Custom flag to trigger download
 //   },
 //   {
 //     name: 'LinkedIn',
@@ -42,23 +51,27 @@
 //               href={social.url}
 //               target="_blank"
 //               rel="noopener noreferrer"
+//               // Only apply download attribute if it exists in the object
+//               download={social.download ? "Kartikey_Kushagra_Resume" : undefined}
 //               className="glass w-12 h-12 flex items-center justify-center rounded-xl transition-all interactive"
 //               whileHover={{
 //                 y: -10,
 //                 boxShadow: `0 20px 40px -10px ${social.color}40`,
+//                 borderColor: social.color
 //               }}
 //               initial={{ opacity: 0, y: 20 }}
 //               animate={{ opacity: 1, y: 0 }}
 //               transition={{ delay: 1.2 + index * 0.1 }}
+//               title={social.name} // Shows text on hover
 //             >
-//               <social.icon className="w-5 h-5" />
+//               <social.icon className="w-5 h-5" style={{ color: social.color }} />
 //             </motion.a>
 //           ))}
 //         </div>
         
 //         <div className="w-px h-8 bg-white/10" />
         
-//         {/* QR Code Section */}
+//         {/* QR Code Section - Unchanged */}
 //         <motion.div
 //           className="flex items-center gap-3"
 //           initial={{ opacity: 0 }}
@@ -97,6 +110,12 @@
 // };
 
 // export default SocialDock;
+
+
+
+
+
+
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, FileText } from 'lucide-react';
 
@@ -107,13 +126,12 @@ const socials = [
     url: 'https://github.com/Kartikey1405',
     color: 'hsl(0 0% 100%)',
   },
-  // --- ADDED RESUME HERE (Right of GitHub) ---
   {
     name: 'Resume',
     icon: FileText,
     url: '/resume.pdf',
-    color: 'hsl(150 100% 50%)', // Bright Green to stand out
-    download: true, // Custom flag to trigger download
+    color: 'hsl(150 100% 50%)',
+    download: true,
   },
   {
     name: 'LinkedIn',
@@ -135,23 +153,24 @@ const SocialDock = () => {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40"
+      className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-40 w-full max-w-fit px-4"
     >
-      <div className="glass px-6 py-4 flex items-center gap-6">
-        <span className="text-xs font-mono text-muted-foreground tracking-wider">
+      <div className="glass px-4 py-3 md:px-6 md:py-4 flex items-center gap-3 md:gap-6 rounded-2xl justify-center">
+        
+        {/* Hidden on mobile to save space */}
+        <span className="hidden md:block text-xs font-mono text-muted-foreground tracking-wider">
           CONNECT
         </span>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
           {socials.map((social, index) => (
             <motion.a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              // Only apply download attribute if it exists in the object
               download={social.download ? "Kartikey_Kushagra_Resume" : undefined}
-              className="glass w-12 h-12 flex items-center justify-center rounded-xl transition-all interactive"
+              className="glass w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl transition-all interactive"
               whileHover={{
                 y: -10,
                 boxShadow: `0 20px 40px -10px ${social.color}40`,
@@ -160,28 +179,30 @@ const SocialDock = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 + index * 0.1 }}
-              title={social.name} // Shows text on hover
+              title={social.name}
             >
-              <social.icon className="w-5 h-5" style={{ color: social.color }} />
+              <social.icon className="w-4 h-4 md:w-5 md:h-5" style={{ color: social.color }} />
             </motion.a>
           ))}
         </div>
         
-        <div className="w-px h-8 bg-white/10" />
+        <div className="w-px h-6 md:h-8 bg-white/10" />
         
-        {/* QR Code Section - Unchanged */}
+        {/* QR Code Animation Section */}
         <motion.div
           className="flex items-center gap-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="text-right">
+          {/* Text hidden on mobile */}
+          <div className="hidden md:block text-right">
             <p className="text-xs font-mono text-muted-foreground">FUEL MY WORK</p>
             <p className="text-xs text-primary">Reactor Core</p>
           </div>
+          
           <motion.div
-            className="w-10 h-10 bg-primary/10 border border-primary/30 rounded-lg flex items-center justify-center interactive"
+            className="w-8 h-8 md:w-10 md:h-10 bg-primary/10 border border-primary/30 rounded-lg flex items-center justify-center interactive"
             whileHover={{ scale: 1.1 }}
             animate={{
               boxShadow: [
@@ -192,7 +213,7 @@ const SocialDock = () => {
             }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <div className="w-6 h-6 grid grid-cols-3 gap-0.5">
+            <div className="w-5 h-5 md:w-6 md:h-6 grid grid-cols-3 gap-0.5">
               {[...Array(9)].map((_, i) => (
                 <div
                   key={i}
