@@ -7,11 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "projects") // This creates a table named 'projects' in Postgres
-@Data                     // Lombok: Auto-generates Getters, Setters, toString
-@NoArgsConstructor        // Lombok: Generates empty constructor
-@AllArgsConstructor       // Lombok: Generates full constructor
-@Builder                  // Lombok: Allows cool object creation patterns
+@Table(name = "projects") 
+@Data                    
+@NoArgsConstructor       
+@AllArgsConstructor       
+@Builder                  
 public class Project {
 
     @Id
@@ -21,19 +21,17 @@ public class Project {
     @Column(nullable = false)
     private String title;
 
-    @Column(length = 1000) // Allow longer text for descriptions
+    @Column(length = 1000) 
     private String description;
 
-    // We will store tech stack as a comma-separated string
-    // Example: "Java, Spring Boot, React, AWS"
+    
     private String techStack;
 
-    private String liveUrl;   // Link to deployed site
-    private String githubUrl; // Link to code
+    private String liveUrl;   
+    private String githubUrl; 
 
-    private String imageUrl;  // Cloudinary URL
+    private String imageUrl;  
 
-    // Critical for Solar System:
-    // 1 = Inner Orbit (Most important), 5 = Outer Orbit
+   
     private Integer priority;
 }
