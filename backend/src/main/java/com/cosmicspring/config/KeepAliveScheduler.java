@@ -10,7 +10,7 @@ public class KeepAliveScheduler {
 
     // Run every 14 minutes (840,000 ms) to stay within free tier limits while preventing sleep
     // (Render sleeps after 15 mins of inactivity)
-    @Scheduled(fixedRate = 540000) 
+    @Scheduled(fixedRate = Long.MAX_VALUE) 
     public void keepAlive() {
         // 1. Print to console to keep logs active
         System.out.println("⚡ Keep-Alive Pulse: Server is active. Time: " + System.currentTimeMillis());
